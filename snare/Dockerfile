@@ -11,11 +11,11 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 ADD . .
 RUN python3 setup.py install
 
-ARG PAGE_URL=example.com
+ARG PAGE_URL=test.threatq.online
 ENV PAGE_URL $PAGE_URL
 ENV PORT 80
-ENV TANNER tanner.mushmush.org
+ENV TANNER tanner-dev.threatq.com
 
-RUN clone --target "http://$PAGE_URL"
+RUN clone --target "https://$PAGE_URL"
 
 CMD snare --no-dorks true --auto-update false --host-ip 0.0.0.0 --port $PORT --page-dir "$PAGE_URL" --tanner $TANNER
